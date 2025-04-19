@@ -15,6 +15,19 @@ class IncidentesController extends Controller
         //
     }
 
+    //retornar todos los incidentes disponibles
+    public function getAllIncidentes()
+    {
+        $incidentes = Incidentes::where('baja', 0)->paginate(10);
+        return $incidentes;
+    }
+
+    public function getAllIncidentesArreglo()
+    {
+        $incidentes = Incidentes::where('baja', 0)->get();
+        return $incidentes;
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -28,7 +41,13 @@ class IncidentesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nuevo_incidente = [
+            'tipo' => $request->tipo,
+            'descripcion' => $request->descripcion,
+            'fecha' => $request->fecha,
+        ];
+        $incidentes = Incidentes::create($nuevo_incidente);
+        return $incidentes;
     }
 
     /**
@@ -52,7 +71,12 @@ class IncidentesController extends Controller
      */
     public function update(Request $request, Incidentes $incidentes)
     {
-        //
+        $incidentes = Incidentes::find($incidentes);
+        $incidentes->tipo = $request->tipo;
+        $incidentes->descripcion = $request->descripcion;
+        $incidentes->fecha = $request->fecha;
+        $incidentes->save();
+        return $incidentes;
     }
 
     /**
@@ -60,6 +84,9 @@ class IncidentesController extends Controller
      */
     public function destroy(Incidentes $incidentes)
     {
-        //
+        $incidentes = Incidentes::find($incidentes);
+        $incidentes->baja = 1;
+        $incidentes->save();
+        return [ 'eliminado' => true ];
     }
 }

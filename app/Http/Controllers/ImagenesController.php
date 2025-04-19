@@ -15,6 +15,18 @@ class ImagenesController extends Controller
         //
     }
 
+    //retornar todas las imagenes disponibles
+    public function getAllImagenes()
+    {
+        $imagenes = Imagenes::where('baja', 0)->paginate(10);
+        return $imagenes;
+    }
+
+    public function getAllImagenesArreglo()
+    {
+        $imagenes = Imagenes::where('baja', 0)->get();
+        return $imagenes;
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -28,7 +40,13 @@ class ImagenesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nueva_imagen = [
+        'imagen'=> $request->imagen,
+        'autor'=> $request->autor,
+        'url'=> $request->url,
+        ];
+        $imagenes = Imagenes::create($nueva_imagen);
+        return $imagenes;
     }
 
     /**
@@ -52,7 +70,12 @@ class ImagenesController extends Controller
      */
     public function update(Request $request, Imagenes $imagenes)
     {
-        //
+        $imagenes = Imagenes::find($imagenes);
+        $imagenes->imagen = $request->imagen;
+        $imagenes->autor = $request->autor;
+        $imagenes->url = $request->url;
+        $imagenes->save();
+        return $imagenes;
     }
 
     /**
@@ -60,6 +83,9 @@ class ImagenesController extends Controller
      */
     public function destroy(Imagenes $imagenes)
     {
-        //
+        $imagenes = Imagenes::find($imagenes);
+        $imagenes->baja = 1;
+        $imagenes->save();
+        return [ 'eliminado' => true ];
     }
 }

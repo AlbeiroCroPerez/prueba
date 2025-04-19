@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('tipo');
             $table->text('descripcion');
             $table->date('fecha');
+            $table->integer('baja')->default(0);
             $table->timestamps();
         });
     }

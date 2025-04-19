@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('imagen');
             $table->string('autor');
             $table->text('url');
+            $table->integer('baja')->default(0);
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@ import { Head } from '@inertiajs/vue3';
             <h2
                 class="text-xl font-semibold leading-tight text-gray-800"
             >
-                Dashboard
+                Bienvenido
             </h2>
         </template>
 
@@ -21,10 +21,12 @@ import { Head } from '@inertiajs/vue3';
                     class="overflow-hidden bg-white shadow-sm sm:rounded-lg"
                 >
                     <div class="p-6 text-gray-900">
-                        You're logged in!
+                        Estas en la aplicacion de prueba de ATDT!
                     </div>
                 </div>
             </div>
         </div>
+
+
     </AuthenticatedLayout>
 </template>

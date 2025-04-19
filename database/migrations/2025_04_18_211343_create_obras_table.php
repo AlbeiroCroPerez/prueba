@@ -14,14 +14,21 @@ return new class extends Migration
         Schema::create('obras', function (Blueprint $table) {
             $table->id();
             $table->integer('numero');
-            $table->string('nombre');
-            $table->string('clave');
-            $table->text('objeto');
-            $table->text('direccion');
-            $table->text('coordenadas');
+            $table->string('nombre', 100);
+            $table->string('clave', 22);
+            $table->text('objeto', 350);
+            $table->text('direccion', 500);
+            $table->text('coordenadas',300);
             $table->unsignedBigInteger('imagen_id');
             $table->unsignedBigInteger('incidente_id');
+            $table->integer('baja')->default(0);
             $table->timestamps();
+            $table->foreign('imagen_id')
+                ->references('id')
+                ->on('imagenes');
+            $table->foreign('incidente_id')
+                ->references('id')
+                ->on('incidentes');
         });
     }
 
