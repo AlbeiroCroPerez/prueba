@@ -1,6 +1,5 @@
-<script>
+<script setup>
 import { ref } from 'vue';
-import AppLayout from '@/Layouts/AppLayout.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import axios from 'axios';
@@ -15,7 +14,7 @@ const props = defineProps({
     },
     num_o:{
         type: Number,
-        default: ""
+        default: 0
     },
     nombre_o:{
         type: String,
@@ -128,7 +127,7 @@ const moverPagina = (pagina) => {
 getAllImagenes();
 </script>
 <template>
-    <AppLayout>
+    <AuthenticatedLayout>
         <Head title="Obras" />
         <template #header>
             <h2 class="titulo">Consultar Obras</h2>
@@ -163,5 +162,64 @@ getAllImagenes();
             <h6>“Photos provided by Pexels”</h6>
         </div>
     </footer>
-    </AppLayout>
+    </AuthenticatedLayout>
 </template>
+
+<style>
+*
+{
+    box-sizing: border-box;
+}
+
+html
+{
+    font-size: 0.94w;
+}
+
+.container
+{
+    font-family: "Asap Condensed", sans-serif;
+	font-size: 1rem;
+    width: 100%;
+    padding: 0 1rem;
+    margin: 0 auto;
+}
+
+.section
+{
+    position: relative;
+}
+
+.fila
+{
+    margin-left: -1rem;
+    margin-right: -1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.columna
+{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: -1px;
+    margin-right: -1px;
+}
+
+.columna-25
+{
+    width: 25%;
+}
+
+.marca
+{
+    text-decoration-color: rgb(0, 20, 130) ml-4;
+}
+
+.valor
+{
+    text-align: right;
+    text-decoration-color: aquamarine;
+}
+
+</style>
